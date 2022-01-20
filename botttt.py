@@ -44,7 +44,7 @@ async def math(ctx, x:int, op, y:int):
         answer = x * y
         await ctx.channel.send(f'Answer = {x} * {y} = {answer}')
     elif op == "/":
-        answer = x * y
+        answer = x / y
         await ctx.channel.send(f'Answer = {x} / {y} = {answer}')
     else:
         await ctx.channel.send(f"'{op}' is an invalid command, use only '+,-,*,/'")

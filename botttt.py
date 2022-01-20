@@ -474,6 +474,29 @@ async def evil(ctx):
     await ctx.channel.send("https://i.imgur.com/MxAE8Wp.mp4")
 
 @client.command()
+async def temp(ctx, temperature:float):
+#def temp(fahrenheit):
+    #return (fahrenheit - 32) * 5 / 9
+
+    fahrenheit = round((temperature * 1.8) + 32)
+    celsius = round((temperature - 32) * 5 / 9)
+    await ctx.channel.send(f"""
+    {temperature} F is equal to {celsius} C
+{temperature} C is equal to {fahrenheit} F
+    """)
+
+#print(f"{fahrenheit} Fahrenheit is equal to {celsius} Celsius")
+#SI = {'mm':0.001, 'cm':0.01, 'm':1.0, 'km':1000.}
+   # return ctx*SI[unit_in]/SI[unit_out]    
+
+    @client.command()
+async def meme(ctx):
+    content = get("https://meme-api.herokuapp.com/gimme").text
+    data = json.loads(content,)
+    meme = discord.Embed(title=f"{data['title']}", Color = discord.Color.random()).set_image(url=f"{data['url']}")
+    await ctx.reply(embed=meme)
+    
+@client.command()
 async def helpx(ctx):
     ''' bot help menu'''
 
@@ -490,11 +513,13 @@ iam sus bot pro, the latest version of sus bot with more intresting features
 .covid {country}  =-=  covid case data's from individual country's
 .qq {question}  =-= to ask any yes or no questions to the bot
 .rate {X to Y} =-= delivering real-time exchange rate for 170 world currencies.
+.meme =-= sends random meme to chat
 .movie {movie name} =-= to get a movie details
 .mp3 {youtube video link} =-= Convert and download any YouTube video into 
 .image {content}   =-= Image Searcher from bing
 .word {word} =-= to get a word's details from dictionary
 .time =-= to print different time zone's time
+.temp {number} =-= type in any number and it will show you Celsius and Fahrenheit
 .tod {'t' ot 'd'}  =-= Truth or dare game
 .love {fname} {sname} =-= a love percentage calculator
 .dadjoke =-= bot will pass some dad jokes
